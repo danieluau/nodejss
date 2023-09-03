@@ -1,0 +1,1 @@
+criamos um arquivo server.js na raiz que vai subir o nosso servidor e em app.js criamos somente uma rota
