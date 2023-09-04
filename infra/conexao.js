@@ -3,11 +3,13 @@ import mysql from 'mysql';
 
 //cria a conexao
 const conexao = mysql.createConnection({
-    host: 'localhost',
+    host: '127.0.0.1',
     port: '3306',
-    user: '',
-    password: '',
-    database: 'bdmusicos'
+    user: 'root',
+    password: 'hyperballad',
+    database: 'dbmusicos'
 });
+
+conexao.connect
 
 export default conexao;
