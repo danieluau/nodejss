@@ -46,22 +46,45 @@ app.get('/musicos/:id', (req, res) => {
         }
     })
 })
+
 app.post('/musicos', (req, res)=>{
-  musicos.push(req.body)
-  res.status(201).send('cadastrado com sucesso');
+  const musico = req.body
+  const sql = "INSERT INTO musicos SET ?;"
+  conexao.query(sql, musico, (error, result) => {
+      if(error){
+        console.log(error)
+        res.status(400).json({'error': error})
+      }else{
+        res.status(201).json(result)
+      }
+  })
 } )
 
 app.delete('/musicos/:id', (req, res) =>{
-  let index = buscaIndice(req.params.id);
-  musicos.splice(index, 1);
-  res.send(`elemento ${index} deletado`)
+  const id = req.params.id;
+  const sql = "DELETE FROM musicos WHERE id_musicos=?;"
+  conexao.query(sql, id, (error, result) => {
+      if(error){
+        console.log(error)
+        res.status(404).json({'error': error})
+      }else{
+        res.status(200).json(result)
+      }
+  })
 })
 
 app.put('/musicos/:id', (req, res) =>{
-  let index = buscaIndice(req.params.id);
-  musicos[index].musico = req.body.musico;
-  musicos[index].banda = req.body.banda;
-  res.json(musicos)
+  const id = req.params.id
+  const musico = req.body
+  const sql = "UPDATE musicos SET ? WHERE id_musicos=?;"
+  conexao.query(sql, [musico, id], (error, result) => {
+      if(error){
+        console.log(error)
+        res.status(400).json({'error': error})
+      }else{
+        res.status(200).json(result)
+      }
+  })
 })
 
 export default app;
