@@ -35,7 +35,7 @@ app.get('/musicos', (req, res)=>{
 
 app.get('/musicos/:id', (req, res) => {
     const id = req.params.id;
-    const sql = "SELECT * FROM musicos WHERE id_musicos=?;"
+    const sql = "SELECT * FROM musicos WHERE id=?;"
     conexao.query(sql, id, (error, result) => {
         const linha = result[0]
         if(error){
@@ -62,7 +62,7 @@ app.post('/musicos', (req, res)=>{
 
 app.delete('/musicos/:id', (req, res) =>{
   const id = req.params.id;
-  const sql = "DELETE FROM musicos WHERE id_musicos=?;"
+  const sql = "DELETE FROM musicos WHERE id=?;"
   conexao.query(sql, id, (error, result) => {
       if(error){
         console.log(error)
@@ -76,7 +76,7 @@ app.delete('/musicos/:id', (req, res) =>{
 app.put('/musicos/:id', (req, res) =>{
   const id = req.params.id
   const musico = req.body
-  const sql = "UPDATE musicos SET ? WHERE id_musicos=?;"
+  const sql = "UPDATE musicos SET ? WHERE id=?;"
   conexao.query(sql, [musico, id], (error, result) => {
       if(error){
         console.log(error)
