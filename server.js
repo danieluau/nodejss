@@ -1,5 +1,4 @@
 import app from './src/app.js';
-import conexao from './infra/conexao.js';
 
 const PORT = 1337
 
