@@ -1,6 +1,6 @@
 import express from 'express';
 
-import selecaoController from './app/controllers/selecaoController.js';
+import selecaoController from './app/controllers/controller.js';
 
 const app = express();
 

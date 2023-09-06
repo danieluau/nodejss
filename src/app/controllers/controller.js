@@ -16,7 +16,7 @@ class selecaoController {
       } 
     show(req, res){
         const id = req.params.id;
-        const sql = "SELECT * FROM musicos WHERE id_musicos=?;"
+        const sql = "SELECT * FROM musicos WHERE id=?;"
         conexao.query(sql, id, (error, result) => {
             const linha = result[0]
             if(error){
@@ -42,7 +42,7 @@ class selecaoController {
     update(req, res) {
         const id = req.params.id
         const musico = req.body
-        const sql = "UPDATE musicos SET ? WHERE id_musicos=?;"
+        const sql = "UPDATE musicos SET ? WHERE id=?;"
         conexao.query(sql, [musico, id], (error, result) => {
             if(error){
               console.log(error)
@@ -54,7 +54,7 @@ class selecaoController {
       } // atualizar
     delete(req, res){
         const id = req.params.id;
-        const sql = "DELETE FROM musicos WHERE id_musicos=?;"
+        const sql = "DELETE FROM musicos WHERE id=?;"
         conexao.query(sql, id, (error, result) => {
             if(error){
               console.log(error)
