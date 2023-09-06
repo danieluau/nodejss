@@ -1,6 +1,6 @@
 import express from 'express';
 
-import selecaoController from './app/controllers/controller.js';
+import controller from './app/controllers/controller.js';
 
 const app = express();
 
@@ -22,14 +22,14 @@ function buscaIndice(id) {
 // criando rotas    
 
 // listar todos
-app.get('/musicos', selecaoController.index);
+app.get('/musicos', controller.index);
 // listar por id
-app.get('/musicos/:id', selecaoController.show)
+app.get('/musicos/:id', controller.show)
 // criar 
-app.post('/musicos',  selecaoController.store)
+app.post('/musicos',  controller.store)
 // deletar
-app.delete('/musicos/:id', selecaoController.delete)
+app.delete('/musicos/:id', controller.delete)
 // atualizar
-app.put('/musicos/:id', selecaoController.update)
+app.put('/musicos/:id', controller.update)
 
 export default app;
