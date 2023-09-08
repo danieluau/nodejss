@@ -1,4 +1,3 @@
-import conexao from '../database/conexao.js'
 import repository from '../repositories/repository.js';
 
 class controller {
@@ -21,30 +20,19 @@ class controller {
         res.json(row)
 
       } // criar dados
-    update(req, res) {
+    async update(req, res) {
         const id = req.params.id
         const musico = req.body
-        const sql = "UPDATE musicos SET ? WHERE id=?;"
-        conexao.query(sql, [musico, id], (error, result) => {
-            if(error){
-              console.log(error)
-              res.status(400).json({'error': error})
-            }else{
-              res.status(200).json(result)
-            }
-        })
+        const row = await repository.update(musico, id)
+        res.json(row)
       } // atualizar
-    delete(req, res){
+    
+    
+    async delete(req, res){
         const id = req.params.id;
-        const sql = "DELETE FROM musicos WHERE id=?;"
-        conexao.query(sql, id, (error, result) => {
-            if(error){
-              console.log(error)
-              res.status(404).json({'error': error})
-            }else{
-              res.status(200).json(result)
-            }
-        })
+        const row = await repository.delete(id)
+        res.json(row)
+
       } // apagar
 }
 

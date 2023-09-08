@@ -41,9 +41,27 @@ class repository{
             })
         })
     }
-    update() {}
-    delete() {}
+    update(musico, id) {
+        const sql = "UPDATE musicos SET ? WHERE id=?;"
+        return new Promise((resolve, reject) => {
+            conexao.query(sql, [musico, id], (erro, resultado) =>{
+                if(erro) return reject('nao foi possivel atualizar', erro)
+                // fazer parse dos resultados
+                const rows= JSON.parse(JSON.stringify(resultado))
+                return resolve(rows)
+            })
+        })
+    }
+    delete(id) {
+        const sql = "DELETE FROM musicos WHERE id=?;"
+        return new Promise((resolve, reject) => {
+            conexao.query(sql, id, (erro, resultado) =>{
+                if(erro) return reject('nao foi possivel deletar', erro)
+                // fazer parse dos resultados
+                const rows= JSON.parse(JSON.stringify(resultado))
+                return resolve(rows)
+            })
+    })}
 }
-
 
 export default new repository();
